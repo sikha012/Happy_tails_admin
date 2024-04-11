@@ -99,13 +99,22 @@ class MainView extends GetView<MainController> {
                         selected: controller.index.value == 7,
                       ),
                       DwrListTile(
-                        title: "Log Out",
-                        svgName: 'logOut.svg',
+                        title: "Orders",
+                        svgName: 'productCategories.svg',
                         onTap: () {
                           controller.index.value = 8;
                           debugPrint(controller.index.value.toString());
                         },
                         selected: controller.index.value == 8,
+                      ),
+                      DwrListTile(
+                        title: "Log Out",
+                        svgName: 'logOut.svg',
+                        onTap: () {
+                          controller.index.value = 9;
+                          debugPrint(controller.index.value.toString());
+                        },
+                        selected: controller.index.value == 9,
                       ),
                     ],
                   ),

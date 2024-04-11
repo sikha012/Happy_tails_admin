@@ -2,9 +2,9 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:happy_admin/app/data/models/petCategory.dart';
+import 'package:happy_admin/app/data/models/pet_category.dart';
 import 'package:happy_admin/app/data/models/product.dart';
-import 'package:happy_admin/app/data/models/productCategory.dart';
+import 'package:happy_admin/app/data/models/product_category.dart';
 import 'package:happy_admin/app/data/models/seller.dart';
 import 'package:happy_admin/app/data/models/token.dart';
 import 'package:happy_admin/app/utils/constants.dart';
@@ -126,7 +126,7 @@ class ApiProvider {
     }
   }
 
-  Future<Product> uploadProduct({
+  Future<String> uploadProduct({
     required String productName,
     required int price,
     required int stockQuantity,
@@ -151,15 +151,79 @@ class ApiProvider {
     });
 
     try {
-      Response response = await dioMultipart.post('/product', data: formData);
-      if (response.data != null) {
-        debugPrint(response.data);
-        debugPrint("Image uploaded successfully");
-        return Product.fromJson(response.data);
-      } else {
-        debugPrint("Image upload failed with status: ${response.statusCode}");
+      final response = await dioMultipart.post('/product', data: formData);
+      debugPrint(response.toString());
+      if (response.statusCode == 201) {
         return response.data['message'];
       }
+      return response.data['message'];
+    } on DioException catch (err) {
+      debugPrint("DioException caught: ${err.response?.data}");
+      if (err.response?.statusCode == 500) {
+        return Future.error('Internal Server Error');
+      } else if (err.response?.statusCode == 400) {
+        return Future.error('Error code 400');
+      } else {
+        return Future.error('Error in the code: ${err.message}');
+      }
+    } catch (e) {
+      debugPrint("Exception caught: $e");
+      return Future.error(e.toString());
+    }
+  }
+  // if (response.statusCode == 201) {
+  //   var result = response.data;
+  //   debugPrint(result);
+  //   if (result is Map<String, dynamic> &&
+  //       result.containsKey('message') &&
+  //       result['message'] is String) {
+  //     debugPrint(result['message']);
+  //     return result['message'];
+  //   } else {
+  //     return Future.error("Unexpected response format");
+  //   }
+  // } else {
+  //   debugPrint("Image upload failed with status: ${response.statusCode}");
+  //   return response.data['message'];
+  // }
+
+  Future<String> updateProduct({
+    required int productId,
+    required String productName,
+    required int price,
+    required int stockQuantity,
+    required String description,
+    String? previousFile,
+    String? fileName,
+    Uint8List? imageBytes,
+    required int petCategory,
+    required int productCategory,
+    required int seller,
+  }) async {
+    FormData formData = FormData.fromMap({
+      "name": productName,
+      "price": price,
+      "stockQuantity": stockQuantity,
+      "description": description,
+      "petCategoryId": petCategory,
+      "productCategoryId": productCategory,
+      "productSellerId": seller,
+      "previousFile": previousFile,
+      "image": imageBytes != null
+          ? MultipartFile.fromBytes(imageBytes, filename: fileName)
+          : null,
+    });
+
+    try {
+      final response = await dioMultipart.put(
+        '/product/$productId',
+        data: formData,
+      );
+      debugPrint(response.toString());
+      if (response.statusCode == 200) {
+        return response.data['message'];
+      }
+      return response.data['message'];
     } on DioException catch (err) {
       debugPrint("DioException caught: ${err.response?.data}");
       if (err.response?.statusCode == 500) {

@@ -13,6 +13,7 @@ abstract class Routes {
   static const TRANSACTIONS = _Paths.TRANSACTIONS;
   static const MAIN = _Paths.MAIN;
   static const LOG_OUT = _Paths.LOG_OUT;
+  static const ORDERS = _Paths.ORDERS;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const TRANSACTIONS = '/transactions';
   static const MAIN = '/main';
   static const LOG_OUT = '/log-out';
+  static const ORDERS = '/orders';
 }

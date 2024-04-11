@@ -16,215 +16,264 @@ class ProductsView extends GetView<ProductsController> {
     var controller = Get.put(ProductsController());
     return Scaffold(
       backgroundColor: Constants.backgroundColor,
-      body: Obx(
-        () => Container(
-          padding: const EdgeInsets.all(20),
-          child: controller.isLoading.value
-              ? const Center(
-                  child: CustomCircularProgressIndicator(),
-                )
-              : controller.products.isEmpty
+      body: GetBuilder<ProductsController>(
+        builder: (context) => Container(
+          padding: const EdgeInsets.all(10),
+          child: Obx(
+            () => Container(
+              padding: const EdgeInsets.all(20),
+              child: controller.isLoading.value
                   ? const Center(
-                      child: Text(
-                        "No data found...",
-                        style: TextStyle(
-                          fontSize: 17.5,
-                        ),
-                      ),
+                      child: CustomCircularProgressIndicator(),
                     )
-                  : Column(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              const Text(
-                                "Manage Products",
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: CustomButton(
-                                  label: "Add Product",
-                                  onPressed: () {
-                                    controller.showAddProductDialog(
-                                        context, controller);
-                                  },
-                                ),
-                              ),
-                            ],
+                  : controller.products.isEmpty
+                      ? const Center(
+                          child: Text(
+                            "No data found...",
+                            style: TextStyle(
+                              fontSize: 17.5,
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 7,
-                          child: Scrollbar(
-                            controller: ScrollController(),
-                            interactive: true,
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Container(
-                                width: Get.width,
-                                height: Get.height,
-                                child: DataTable2(
-                                  sortColumnIndex:
-                                      controller.sortColumnIndex.value,
-                                  sortAscending: controller.isAscending.value,
-                                  sortArrowIcon: CupertinoIcons.sort_down,
-                                  // border: TableBorder(
-                                  //     horizontalInside: BorderSide(width: 1),
-                                  //     verticalInside: BorderSide(width: 1)),
-                                  dataRowHeight: 80,
-                                  dividerThickness: 1.5,
-                                  headingRowDecoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border(
-                                      bottom: BorderSide(width: 1),
+                        )
+                      : Column(
+                          children: [
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    "Manage Products",
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  columnSpacing: 8,
-                                  horizontalMargin: 10,
-                                  minWidth: 600,
-                                  columns: [
-                                    DataColumn2(
-                                      onSort: (columnIndex, ascending) {
-                                        controller.sortProducts(
-                                            columnIndex, ascending);
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: CustomButton(
+                                      label: "Add Product",
+                                      onPressed: () {
+                                        controller.showAddProductDialog();
                                       },
-                                      label: const Text(
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                          ),
-                                          'Product ID'),
-                                      size: ColumnSize.S,
                                     ),
-                                    DataColumn2(
-                                      onSort: (columnIndex, ascending) {
-                                        controller.sortProducts(
-                                            columnIndex, ascending);
-                                      },
-                                      label: const Text(
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                          ),
-                                          'Product Name'),
-                                      size: ColumnSize.L,
-                                    ),
-                                    DataColumn2(
-                                      onSort: (columnIndex, ascending) {
-                                        controller.sortProducts(
-                                            columnIndex, ascending);
-                                      },
-                                      label: const Text(
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                          ),
-                                          'Price'),
-                                      size: ColumnSize.S,
-                                    ),
-                                    DataColumn2(
-                                      onSort: (columnIndex, ascending) {
-                                        controller.sortProducts(
-                                            columnIndex, ascending);
-                                      },
-                                      label: const Text(
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                          ),
-                                          'Stock Quantity'),
-                                      size: ColumnSize.M,
-                                    ),
-                                    DataColumn2(
-                                      onSort: (columnIndex, ascending) {
-                                        controller.sortProducts(
-                                            columnIndex, ascending);
-                                      },
-                                      label: const Text(
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                          ),
-                                          'Category'),
-                                      size: ColumnSize.M,
-                                    ),
-                                    DataColumn2(
-                                      onSort: (columnIndex, ascending) {
-                                        controller.sortProducts(
-                                            columnIndex, ascending);
-                                      },
-                                      label: const Text(
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                          ),
-                                          'Description'),
-                                      size: ColumnSize.L,
-                                    ),
-                                    DataColumn2(
-                                      onSort: (columnIndex, ascending) {
-                                        controller.sortProducts(
-                                            columnIndex, ascending);
-                                      },
-                                      label: const Text(
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                          ),
-                                          'Image'),
-                                      size: ColumnSize.L,
-                                    ),
-                                    DataColumn2(
-                                      onSort: (columnIndex, ascending) {
-                                        controller.sortProducts(
-                                            columnIndex, ascending);
-                                      },
-                                      label: const Text(
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                          ),
-                                          'Pet Category'),
-                                      size: ColumnSize.M,
-                                    ),
-                                    DataColumn2(
-                                      onSort: (columnIndex, ascending) {
-                                        controller.sortProducts(
-                                            columnIndex, ascending);
-                                      },
-                                      label: const Text(
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                          ),
-                                          'Seller Name'),
-                                      size: ColumnSize.M,
-                                    ),
-                                  ],
-                                  rows: List<DataRow>.generate(
-                                    growable: true,
-                                    controller.products.length,
-                                    (index) => DataRow(
-                                      color: const MaterialStatePropertyAll(
-                                        Colors.white,
-                                      ),
-                                      cells: [
-                                        DataCell(
-                                          Text(
-                                            controller.products[index].productId
-                                                .toString(),
-                                          ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Expanded(
+                              flex: 8,
+                              child: Scrollbar(
+                                interactive: true,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: SizedBox(
+                                    width: Get.width * 0.77,
+                                    height: Get.height,
+                                    child: DataTable2(
+                                      sortColumnIndex:
+                                          controller.sortColumnIndex.value,
+                                      sortAscending:
+                                          controller.isAscending.value,
+                                      sortArrowIcon: CupertinoIcons.sort_down,
+                                      // border: TableBorder(
+                                      //     horizontalInside: BorderSide(width: 1),
+                                      //     verticalInside: BorderSide(width: 1)),
+                                      dataRowHeight: 80,
+                                      dividerThickness: 1.5,
+                                      headingRowDecoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border(
+                                          bottom: BorderSide(width: 1),
                                         ),
-                                        DataCell(
-                                          Row(
-                                            children: [
+                                      ),
+                                      columnSpacing: 8,
+                                      horizontalMargin: 10,
+                                      minWidth: 600,
+                                      columns: [
+                                        DataColumn2(
+                                          onSort: (columnIndex, ascending) {
+                                            controller.sortProducts(
+                                                columnIndex, ascending);
+                                          },
+                                          label: const Text(
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                              'Product ID'),
+                                          size: ColumnSize.S,
+                                        ),
+                                        DataColumn2(
+                                          onSort: (columnIndex, ascending) {
+                                            controller.sortProducts(
+                                                columnIndex, ascending);
+                                          },
+                                          label: const Text(
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                              'Product Name'),
+                                          size: ColumnSize.S,
+                                        ),
+                                        DataColumn2(
+                                          onSort: (columnIndex, ascending) {
+                                            controller.sortProducts(
+                                                columnIndex, ascending);
+                                          },
+                                          label: const Text(
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                              'Price'),
+                                          size: ColumnSize.S,
+                                        ),
+                                        DataColumn2(
+                                          onSort: (columnIndex, ascending) {
+                                            controller.sortProducts(
+                                                columnIndex, ascending);
+                                          },
+                                          label: const Text(
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                              'Stock Quantity'),
+                                          size: ColumnSize.S,
+                                        ),
+                                        DataColumn2(
+                                          onSort: (columnIndex, ascending) {
+                                            controller.sortProducts(
+                                                columnIndex, ascending);
+                                          },
+                                          label: const Text(
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                              'Category'),
+                                          size: ColumnSize.S,
+                                        ),
+                                        DataColumn2(
+                                          onSort: (columnIndex, ascending) {
+                                            controller.sortProducts(
+                                                columnIndex, ascending);
+                                          },
+                                          label: const Text(
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                              'Description'),
+                                          size: ColumnSize.S,
+                                        ),
+                                        DataColumn2(
+                                          onSort: (columnIndex, ascending) {
+                                            controller.sortProducts(
+                                                columnIndex, ascending);
+                                          },
+                                          label: const Text(
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                              'Image'),
+                                          size: ColumnSize.S,
+                                        ),
+                                        DataColumn2(
+                                          onSort: (columnIndex, ascending) {
+                                            controller.sortProducts(
+                                                columnIndex, ascending);
+                                          },
+                                          label: const Text(
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                              'Pet Category'),
+                                          size: ColumnSize.S,
+                                        ),
+                                        DataColumn2(
+                                          onSort: (columnIndex, ascending) {
+                                            controller.sortProducts(
+                                                columnIndex, ascending);
+                                          },
+                                          label: const Text(
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                              'Seller Name'),
+                                          size: ColumnSize.S,
+                                        ),
+                                      ],
+                                      rows: List<DataRow>.generate(
+                                        growable: true,
+                                        controller.products.length,
+                                        (index) => DataRow(
+                                          color: const MaterialStatePropertyAll(
+                                            Colors.white,
+                                          ),
+                                          cells: [
+                                            DataCell(
+                                              onTapCancel: () {},
+                                              showEditIcon: true,
+                                              onTap: () {
+                                                Get.snackbar(
+                                                    'Hey', 'Beautiful');
+                                                controller
+                                                    .showEditProductDialog(
+                                                        controller
+                                                            .products[index]);
+                                              },
+                                              Text(
+                                                controller
+                                                    .products[index].productId
+                                                    .toString(),
+                                              ),
+                                            ),
+                                            DataCell(
+                                              Text(controller.products[index]
+                                                      .productName ??
+                                                  ''),
+                                            ),
+                                            DataCell(
+                                              Text(
+                                                controller.products[index]
+                                                    .productPrice
+                                                    .toString(),
+                                              ),
+                                            ),
+                                            DataCell(
+                                              Text(
+                                                controller.products[index]
+                                                    .productstockQuantity
+                                                    .toString(),
+                                              ),
+                                            ),
+                                            DataCell(
+                                              Text(
+                                                controller.products[index]
+                                                        .productcategoryName ??
+                                                    '-',
+                                              ),
+                                            ),
+                                            DataCell(
+                                              Text(
+                                                controller.products[index]
+                                                        .productDescription ??
+                                                    '-',
+                                              ),
+                                            ),
+                                            DataCell(
                                               SizedBox(
-                                                width: 40,
-                                                height: 40,
+                                                width: 50,
+                                                height: 50,
                                                 child: Image.network(
                                                   fit: BoxFit.cover,
                                                   getProductImage(
@@ -233,82 +282,33 @@ class ProductsView extends GetView<ProductsController> {
                                                   ),
                                                 ),
                                               ),
-                                              // CircleAvatar(
-                                              //   radius: 10,
-                                              //   backgroundImage: NetworkImage(
-                                              //     getProductImage(
-                                              //         controller.products[index].productImage ??
-                                              //             ''),
-                                              //   ),
-                                              // ),
-                                              const SizedBox(
-                                                width: 5,
+                                            ),
+                                            DataCell(
+                                              Text(
+                                                controller.products[index]
+                                                        .petcategoryName ??
+                                                    '-',
                                               ),
-                                              Text(controller.products[index]
-                                                      .productName ??
-                                                  ''),
-                                            ],
-                                          ),
+                                            ),
+                                            DataCell(
+                                              Text(
+                                                controller.products[index]
+                                                        .sellerName ??
+                                                    '-',
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        DataCell(
-                                          Text(
-                                            controller
-                                                .products[index].productPrice
-                                                .toString(),
-                                          ),
-                                        ),
-                                        DataCell(
-                                          Text(
-                                            controller.products[index]
-                                                .productstockQuantity
-                                                .toString(),
-                                          ),
-                                        ),
-                                        DataCell(
-                                          Text(
-                                            controller.products[index]
-                                                    .productcategoryName ??
-                                                '-',
-                                          ),
-                                        ),
-                                        DataCell(
-                                          Text(
-                                            controller.products[index]
-                                                    .productDescription ??
-                                                '-',
-                                          ),
-                                        ),
-                                        DataCell(
-                                          Text(
-                                            controller.products[index]
-                                                    .productImage ??
-                                                '-',
-                                          ),
-                                        ),
-                                        DataCell(
-                                          Text(
-                                            controller.products[index]
-                                                    .petcategoryName ??
-                                                '-',
-                                          ),
-                                        ),
-                                        DataCell(
-                                          Text(
-                                            controller.products[index]
-                                                    .sellerName ??
-                                                '-',
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
+            ),
+          ),
         ),
       ),
     );

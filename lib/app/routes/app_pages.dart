@@ -6,6 +6,8 @@ import '../modules/log_out/bindings/log_out_binding.dart';
 import '../modules/log_out/views/log_out_view.dart';
 import '../modules/main/bindings/main_binding.dart';
 import '../modules/main/views/main_view.dart';
+import '../modules/orders/bindings/orders_binding.dart';
+import '../modules/orders/views/orders_view.dart';
 import '../modules/pet_categories/bindings/pet_categories_binding.dart';
 import '../modules/pet_categories/views/pet_categories_view.dart';
 import '../modules/pet_profiles/bindings/pet_profiles_binding.dart';
@@ -78,6 +80,11 @@ class AppPages {
       name: _Paths.LOG_OUT,
       page: () => const LogOutView(),
       binding: LogOutBinding(),
+    ),
+    GetPage(
+      name: _Paths.ORDERS,
+      page: () => const OrdersView(),
+      binding: OrdersBinding(),
     ),
   ];
 }
