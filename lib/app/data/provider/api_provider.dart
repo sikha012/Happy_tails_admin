@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:happy_admin/app/data/models/payment_model.dart';
 import 'package:happy_admin/app/data/models/pet_category.dart';
 import 'package:happy_admin/app/data/models/product.dart';
 import 'package:happy_admin/app/data/models/product_category.dart';
@@ -232,6 +233,26 @@ class ApiProvider {
         return Future.error('Error code 400');
       } else {
         return Future.error('Error in the code: ${err.message}');
+      }
+    } catch (e) {
+      debugPrint("Exception caught: $e");
+      return Future.error(e.toString());
+    }
+  }
+
+  Future<List<PaymentModel>> getAllPayments() async {
+    try {
+      final response = await dioJson.get('/paymentDetails');
+      debugPrint(response.toString());
+      return (response.data as List)
+          .map((payment) => PaymentModel.fromJson(payment))
+          .toList();
+    } on DioException catch (err) {
+      debugPrint("DioException caught: ${err.response?.data}");
+      if (err.response?.statusCode == 500) {
+        return Future.error('Internal Server Error');
+      } else {
+        return Future.error('Error fetching payment details: ${err.message}');
       }
     } catch (e) {
       debugPrint("Exception caught: $e");

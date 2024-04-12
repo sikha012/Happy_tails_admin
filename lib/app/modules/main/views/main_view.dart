@@ -53,18 +53,36 @@ class MainView extends GetView<MainController> {
                         },
                         selected: controller.index.value == 2,
                       ),
+                      // DwrListTile(
+                      //   title: "Pet Profiles",
+                      //   svgName: 'petProfiles.svg',
+                      //   onTap: () {
+                      //     controller.index.value = 3;
+                      //     debugPrint(controller.index.value.toString());
+                      //   },
+                      //   selected: controller.index.value == 3,
+                      // ),
                       DwrListTile(
-                        title: "Pet Profiles",
-                        svgName: 'petProfiles.svg',
+                        title: "Product Categories",
+                        svgName: 'productCategories.svg',
                         onTap: () {
                           controller.index.value = 3;
                           debugPrint(controller.index.value.toString());
                         },
                         selected: controller.index.value == 3,
                       ),
+                      // DwrListTile(
+                      //   title: "Product Sellers",
+                      //   svgName: 'sellers.svg',
+                      //   onTap: () {
+                      //     controller.index.value = 5;
+                      //     debugPrint(controller.index.value.toString());
+                      //   },
+                      //   selected: controller.index.value == 5,
+                      // ),
                       DwrListTile(
-                        title: "Product Categories",
-                        svgName: 'productCategories.svg',
+                        title: "Products",
+                        svgName: 'products.svg',
                         onTap: () {
                           controller.index.value = 4;
                           debugPrint(controller.index.value.toString());
@@ -72,8 +90,8 @@ class MainView extends GetView<MainController> {
                         selected: controller.index.value == 4,
                       ),
                       DwrListTile(
-                        title: "Product Sellers",
-                        svgName: 'sellers.svg',
+                        title: "Transactions",
+                        svgName: 'transactions.svg',
                         onTap: () {
                           controller.index.value = 5;
                           debugPrint(controller.index.value.toString());
@@ -81,8 +99,8 @@ class MainView extends GetView<MainController> {
                         selected: controller.index.value == 5,
                       ),
                       DwrListTile(
-                        title: "Products",
-                        svgName: 'products.svg',
+                        title: "Orders",
+                        svgName: 'productCategories.svg',
                         onTap: () {
                           controller.index.value = 6;
                           debugPrint(controller.index.value.toString());
@@ -90,31 +108,13 @@ class MainView extends GetView<MainController> {
                         selected: controller.index.value == 6,
                       ),
                       DwrListTile(
-                        title: "Transactions",
-                        svgName: 'transactions.svg',
+                        title: "Log Out",
+                        svgName: 'logOut.svg',
                         onTap: () {
                           controller.index.value = 7;
                           debugPrint(controller.index.value.toString());
                         },
                         selected: controller.index.value == 7,
-                      ),
-                      DwrListTile(
-                        title: "Orders",
-                        svgName: 'productCategories.svg',
-                        onTap: () {
-                          controller.index.value = 8;
-                          debugPrint(controller.index.value.toString());
-                        },
-                        selected: controller.index.value == 8,
-                      ),
-                      DwrListTile(
-                        title: "Log Out",
-                        svgName: 'logOut.svg',
-                        onTap: () {
-                          controller.index.value = 9;
-                          debugPrint(controller.index.value.toString());
-                        },
-                        selected: controller.index.value == 9,
                       ),
                     ],
                   ),

@@ -4,9 +4,7 @@ import 'package:happy_admin/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:happy_admin/app/modules/log_out/views/log_out_view.dart';
 import 'package:happy_admin/app/modules/orders/views/orders_view.dart';
 import 'package:happy_admin/app/modules/pet_categories/views/pet_categories_view.dart';
-import 'package:happy_admin/app/modules/pet_profiles/views/pet_profiles_view.dart';
 import 'package:happy_admin/app/modules/product_categories/views/product_categories_view.dart';
-import 'package:happy_admin/app/modules/product_sellers/views/product_sellers_view.dart';
 import 'package:happy_admin/app/modules/products/views/products_view.dart';
 import 'package:happy_admin/app/modules/transactions/views/transactions_view.dart';
 import 'package:happy_admin/app/modules/user_profiles/views/user_profiles_view.dart';
@@ -23,12 +21,12 @@ class MainController extends GetxController {
   RxInt index = 0.obs;
 
   var pages = const [
-    UserProfilesView(),
     DashboardView(),
+    UserProfilesView(),
     PetCategoriesView(),
-    PetProfilesView(),
+    // PetProfilesView(),
     ProductCategoriesView(),
-    ProductSellersView(),
+    // ProductSellersView(),
     ProductsView(),
     TransactionsView(),
     OrdersView(),

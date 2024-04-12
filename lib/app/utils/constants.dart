@@ -6,7 +6,7 @@ class Constants {
   static const tertiaryColor = Color(0xFFFFA500);
 }
 
-const currentIpAddress = '172.25.5.58:8001';
+const currentIpAddress = '192.168.1.71:8001';
 const baseUrlLink = 'http://$currentIpAddress';
 
 var getProductImage = (imageUrl) {
