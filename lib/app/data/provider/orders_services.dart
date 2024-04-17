@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:happy_admin/app/data/models/order_detail-model.dart';
+import 'package:happy_admin/app/data/models/order_detail_model.dart';
 import 'package:happy_admin/app/data/provider/api_provider.dart';
 
 class OrderService extends ApiProvider {

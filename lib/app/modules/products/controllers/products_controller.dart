@@ -56,6 +56,12 @@ class ProductsController extends GetxController {
     getAllSellers();
   }
 
+  int getActiveProductsCount() {
+    return products
+        .where((product) => product.productstockQuantity! > 0)
+        .length;
+  }
+
   void getAllProducts() async {
     isLoading.value = true;
     try {
@@ -65,6 +71,20 @@ class ProductsController extends GetxController {
       isLoading.value = false;
     }
     update();
+  }
+
+  Map<String, int> getProductDistributionByCategory() {
+    Map<String, int> categoryDistribution = {};
+
+    for (var product in products) {
+      if (!categoryDistribution.containsKey(product.productcategoryName)) {
+        categoryDistribution[product.productcategoryName!] = 0;
+      }
+      categoryDistribution[product.productcategoryName!] =
+          categoryDistribution[product.productcategoryName!]! + 1;
+    }
+
+    return categoryDistribution;
   }
 
   void getAllPetCategories() async {

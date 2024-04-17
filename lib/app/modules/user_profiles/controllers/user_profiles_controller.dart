@@ -46,6 +46,25 @@ class UserProfilesController extends GetxController {
     update();
   }
 
+  int getUserCountByMonth(int year, int month) {
+    return users
+        .where((user) =>
+            user.createdAt!.year == year && user.createdAt!.month == month)
+        .length;
+  }
+
+  int getUserCountForCurrentMonth() {
+    final now = DateTime.now();
+    return getUserCountByMonth(now.year, now.month);
+  }
+
+  int getUserCountForPreviousMonth() {
+    final now = DateTime.now();
+    final previousMonth = now.month == 1 ? 12 : now.month - 1;
+    final year = now.month == 1 ? now.year - 1 : now.year;
+    return getUserCountByMonth(year, previousMonth);
+  }
+
   void disposeControllers() {
     userTypeController.clear();
     userNameController.clear();
