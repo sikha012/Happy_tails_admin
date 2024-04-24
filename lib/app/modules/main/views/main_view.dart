@@ -120,7 +120,6 @@ class MainView extends GetView<MainController> {
                   ),
                 ),
                 Expanded(
-                  // Takes 5/6 part of the screen
                   flex: 5,
                   child: controller.pages[controller.index.value],
                 ),

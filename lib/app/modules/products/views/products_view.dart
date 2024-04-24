@@ -43,21 +43,21 @@ class ProductsView extends GetView<ProductsController> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Text(
-                                    "Manage Products",
+                                    "Products",
                                     style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: CustomButton(
-                                      label: "Add Product",
-                                      onPressed: () {
-                                        controller.showAddProductDialog();
-                                      },
-                                    ),
-                                  ),
+                                  // Align(
+                                  //   alignment: Alignment.centerRight,
+                                  //   child: CustomButton(
+                                  //     label: "Add Product",
+                                  //     onPressed: () {
+                                  //       controller.showAddProductDialog();
+                                  //     },
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -221,16 +221,15 @@ class ProductsView extends GetView<ProductsController> {
                                           ),
                                           cells: [
                                             DataCell(
-                                              onTapCancel: () {},
-                                              showEditIcon: true,
-                                              onTap: () {
-                                                Get.snackbar(
-                                                    'Hey', 'Beautiful');
-                                                controller
-                                                    .showEditProductDialog(
-                                                        controller
-                                                            .products[index]);
-                                              },
+                                              // onTapCancel: () {},
+                                              //showEditIcon: true,
+                                              // onTap: () {
+
+                                              //   controller
+                                              //       .showEditProductDialog(
+                                              //           controller
+                                              //               .products[index]);
+                                              // },
                                               Text(
                                                 controller
                                                     .products[index].productId

@@ -44,7 +44,6 @@ class OrdersController extends GetxController {
 
     if (monthlyOrders.isEmpty) return [];
 
-    // Aggregate orders by productId, summing quantities
     var productSales = <int, int>{};
     for (var order in monthlyOrders) {
       if (order.productId != null && order.quantity != null) {
@@ -56,7 +55,6 @@ class OrdersController extends GetxController {
       }
     }
 
-    // Convert to list of products and sort by quantity sold
     // var sortedProducts = productSales.entries
     //     .map((entry) => {'productId': entry.key, 'quantitySold': entry.value})
     //     .toList();

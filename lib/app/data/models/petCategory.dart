@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final petCategory = petCategoryFromJson(jsonString);
-
 import 'dart:convert';
 
 PetCategory petCategoryFromJson(String str) =>

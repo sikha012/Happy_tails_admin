@@ -290,7 +290,7 @@ class DashboardView extends GetView<DashboardController> {
                       // Container for the Pie Chart
                       Expanded(
                         child: Container(
-                          height: 450,
+                          height: 550,
                           padding: const EdgeInsets.all(8.0),
                           margin:
                               const EdgeInsets.only(left: 12.5, right: 25.0),

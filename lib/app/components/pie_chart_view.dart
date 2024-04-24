@@ -111,7 +111,7 @@ class _PieChartScreenState extends State<PieChartScreen> {
           padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
           child: Wrap(
             spacing: 16,
-            runSpacing: 16,
+            runSpacing: 5,
             children: widget.categoryDistribution.keys.map((category) {
               return _buildLegendItem(category, categoryColorMap[category]!);
             }).toList(),

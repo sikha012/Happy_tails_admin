@@ -5,11 +5,11 @@ import 'package:intl/intl.dart';
 
 class LineChartScreen extends StatefulWidget {
   final double ratio;
-  final List<int> salesData; // This will hold the sales data
+  final List<int> salesData;
   const LineChartScreen({
     super.key,
     required this.ratio,
-    required this.salesData, // Require sales data when initializing
+    required this.salesData,
   });
 
   @override
@@ -75,8 +75,6 @@ class _LineChartScreenState extends State<LineChartScreen> {
       fontSize: 16,
     );
 
-    // Use modulo to ensure the index wraps around if it goes out of bounds.
-    // This will repeat the months in a cyclic manner if the index is out of range.
     final index = value.toInt() % months.length;
     return SideTitleWidget(
       axisSide: meta.axisSide,
@@ -89,9 +87,9 @@ class _LineChartScreenState extends State<LineChartScreen> {
       fontWeight: FontWeight.bold,
       fontSize: 15,
     );
-    // Round the value to the nearest thousand for cleaner labels
+
     int roundedValue = (value / 10000).round() * 10000;
-    // Convert the value to a label with 'K' representing thousands
+
     String text = '${(roundedValue / 1000).toInt()}K';
 
     return Padding(

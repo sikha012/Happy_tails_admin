@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final token = tokenFromJson(jsonString);
-
 import 'dart:convert';
 
 Token tokenFromJson(String str) => Token.fromJson(json.decode(str));

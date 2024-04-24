@@ -101,9 +101,7 @@ class DwrListTile extends StatelessWidget {
         'assets/svgs/$svgName',
         height: 20,
         color: iconColor ??
-            ((selected ?? false)
-                ? selectedTextColor
-                : unselectedTextColor), // Specify the color you want to apply
+            ((selected ?? false) ? selectedTextColor : unselectedTextColor),
         colorBlendMode: BlendMode.srcIn,
       ),
       title: Text(
